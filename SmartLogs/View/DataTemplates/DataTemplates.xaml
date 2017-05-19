@@ -1,0 +1,76 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SmartLogs.View.DataTemplates.DataTemplates"
+    xmlns:local="using:SmartLogs.View.DataTemplates"
+    xmlns:view="using:SmartLogs.View"
+    xmlns:model="using:SmartLogs.Model"
+    xmlns:templateSelectors="using:SmartLogs.TemplateSelectors"
+    xmlns:viewModel="using:SmartLogs.ViewModel">
+
+    <DataTemplate x:Key="NavigationLogTemplate"
+                  x:DataType="viewModel:LogRowViewModel">
+        <view:CollapsedEventRow IconImageSource="/Assets/Icons/Navigation.png"
+                                Message="{x:Bind Log.LogTitle}"
+                                Subtitle="{x:Bind Log.LogTimeStamp}"
+                                TooltipMessage="{x:Bind Log.LogLocation}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="UserEventLogTemplate"
+                  x:DataType="viewModel:LogRowViewModel">
+        <view:CollapsedEventRow IconImageSource="/Assets/Icons/Touch.png"
+                                Message="{x:Bind Log.LogTitle}"
+                                Subtitle="{x:Bind Log.LogTimeStamp}"
+                                TooltipMessage="{x:Bind Log.LogLocation}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AppEventLogTemplate"
+                  x:DataType="viewModel:LogRowViewModel">
+        <view:CollapsedEventRow IconImageSource="/Assets/Icons/Event.png"
+                                Message="{x:Bind Log.LogTitle}"
+                                Subtitle="{x:Bind Log.LogTimeStamp}" 
+                                TooltipMessage="{x:Bind Log.LogLocation}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="NetworkStartTemplate"
+                  x:DataType="viewModel:LogRowViewModel">
+        <view:CollapsedEventRow IconImageSource="/Assets/Icons/NetworkStart.png"
+                                Message="{x:Bind Log.LogTitle}"
+                                Subtitle="{x:Bind Log.LogTimeStamp}"
+                                TooltipMessage="{x:Bind Log.LogLocation}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="NetworkEndTemplate"
+                  x:DataType="viewModel:LogRowViewModel">
+        <view:CollapsedEventRow IconImageSource="/Assets/Icons/NetworkEnd.png"
+                                Message="{x:Bind Log.LogTitle}"
+                                Subtitle="{x:Bind Log.LogTimeStamp}"
+                                TooltipMessage="{x:Bind Log.LogLocation}"/>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="ExceptionTemplate"
+                  x:DataType="viewModel:LogRowViewModel">
+        <view:CollapsedEventRow IconImageSource="/Assets/Icons/Exception.png"
+                                Message="{x:Bind Log.LogTitle}"
+                                Subtitle="{x:Bind Log.LogTimeStamp}"
+                                TooltipMessage="{x:Bind Log.LogLocation}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MessageTemplate">
+        <view:MessageLog></view:MessageLog>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CollapsibleSectionTemplate">
+        <view:CollapsibleSection></view:CollapsibleSection>
+    </DataTemplate>
+
+    <templateSelectors:LogTemplateSelector x:Key="LogTemplateSelector"
+                                           AppEventTemplate="{StaticResource AppEventLogTemplate}"
+                                           NavigationTemplate="{StaticResource NavigationLogTemplate}"
+                                           UserActionTemplate="{StaticResource UserEventLogTemplate}"
+                                           NetworkStartTemplate="{StaticResource NetworkStartTemplate}"
+                                           NetworkEndTemplate="{StaticResource NetworkEndTemplate}"
+                                           CollapsibleSectionTemplate="{StaticResource CollapsibleSectionTemplate}"
+                                           MessageTemplate="{StaticResource MessageTemplate}"
+                                           ExceptionTemplate="{StaticResource ExceptionTemplate}" />
+</ResourceDictionary>

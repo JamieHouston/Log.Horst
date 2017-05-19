@@ -1,0 +1,48 @@
+﻿<Page x:Class="SmartLogs.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SmartLogs"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:templateSelectors="using:SmartLogs.TemplateSelectors"
+      xmlns:eventLogViews="using:SmartLogs.View.EventLogViews"
+      xmlns:view="using:SmartLogs.View"
+      mc:Ignorable="d">
+
+    <SplitView>
+        <SplitView.Pane>
+            <Grid>
+                <TextBlock Text="Relevant Events"></TextBlock>
+            </Grid>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Grid.Row="1">
+                    <ItemsControl ItemsSource="{Binding Logs}"
+                                  ItemTemplateSelector="{StaticResource LogTemplateSelector}"></ItemsControl>
+                </ScrollViewer>
+
+
+            </Grid>
+        </SplitView.Content>
+    </SplitView>
+    
+    
+    <Page.BottomAppBar>
+        <CommandBar IsSticky="True">
+            <AppBarButton Icon="Play" Label="Simulate Events"
+                          Click="Simulate_OnClick"></AppBarButton>
+
+            <AppBarButton Icon="Refresh" Label="Refresh Logs"
+                          Click="Refresh_Clicked"></AppBarButton>
+
+            <AppBarButton Icon="Play" Label="Simulate Network"
+                          Click="Network_Clicked"></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
