@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ReactiveUI;
 using SmartLogs.Model;
 using SmartLogs.ViewModel;
 
@@ -23,22 +14,29 @@ namespace SmartLogs
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : IViewFor<MainPageViewModel>
     {
-        private readonly MainPageViewModel _viewModel;
-
         public MainPage()
         {
             this.InitializeComponent();
-            _viewModel = new MainPageViewModel();
-            DataContext = _viewModel;
+            ViewModel = new MainPageViewModel();
+            DataContext = ViewModel;
+
+            this.WhenActivated(WireUpBindings);
+        }
+
+        private void WireUpBindings(Action<IDisposable> d)
+        {
+            d(this.Bind(ViewModel, vm => vm.FilteredList, v => v.LogsListView.ItemsSource));
+            d(this.OneWayBind(ViewModel, vm => vm.Levels, v => v.LevelComboBox.ItemsSource));
+            d(this.Bind(ViewModel, vm => vm.SelectedLevel, v => v.LevelComboBox.SelectedItem));
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            await _viewModel.RefreshAsync();
+            await ViewModel.RefreshAsync();
 
         }
 
@@ -49,12 +47,12 @@ namespace SmartLogs
 
             await App.LoggingService.FlushLogsToDiskAsync();
 
-            await _viewModel.RefreshAsync();
+            await ViewModel.RefreshAsync();
         }
 
         private async void Refresh_Clicked(object sender, RoutedEventArgs e)
         {
-            await _viewModel.RefreshAsync();
+            await ViewModel.RefreshAsync();
         }
 
         private async void Network_Clicked(object sender, RoutedEventArgs e)
@@ -77,7 +75,15 @@ namespace SmartLogs
 
             });
 
-            await _viewModel.RefreshAsync();
+            await ViewModel.RefreshAsync();
         }
+
+        object IViewFor.ViewModel
+        {
+            get { return ViewModel; }
+            set { ViewModel = (MainPageViewModel)value; }
+        }
+
+        public MainPageViewModel ViewModel { get; set; }
     }
 }

@@ -7,10 +7,12 @@ namespace SmartLogs.Model
     {
         protected LogBase(LogMetaData metaData, LogType type, string message)
         {
-            Message = message;
+            // TODO: whats the point of having three different ones?
+            LogTitle = LogMessage = Message = message;
             LogType = type;
             LogTimeStamp = metaData.DateTime;
             LogLocation = $"{metaData.FileName} - {metaData.MethodName} - {metaData.LineNumber}";
+            LoggingLevel = metaData.Level;
         }
 
         public DateTime LogTimeStamp { get; set; }
@@ -22,8 +24,9 @@ namespace SmartLogs.Model
 
         public LogType LogType { get; set; }
 
-        public abstract string LogMessage { get; }
+        public virtual string LogMessage { get; }
 
-        public abstract string LogTitle { get; }
+        public virtual string LogTitle { get; }
+        public LoggingLevel LoggingLevel { get; set; }
     }
 }

@@ -6,15 +6,14 @@ namespace SmartLogs.Model
     public class UserActionEventLog : LogBase
     {
         public UserActionVerb UserAction { get; set; }
-        public string TagetObject { get; set; } 
 
-        public UserActionEventLog(LogMetaData metaData, UserActionVerb userAction, string targetObject, string message) : base(metaData, LogType.UserAction, message)
+        public UserActionEventLog(LogMetaData metaData, UserActionVerb userAction, string page, string element, string message) : base(metaData, LogType.UserAction, message)
         {
             UserAction = userAction;
-            TagetObject = targetObject;
+            LogTitle = LogMessage = $"User tapped on {element} in {page}";
         }
 
-        public override string LogMessage =>$"[{LogType}][{UserAction}][{TagetObject}] - {Message}";
-        public override string LogTitle => $"The user {UserAction} on {TagetObject}";
+        public override string LogMessage { get; }
+        public override string LogTitle { get; }
     }
 }

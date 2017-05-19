@@ -1,16 +1,27 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Reactive.Linq;
 using ReactiveUI;
+using SmartLogs.Model;
 
 namespace SmartLogs.ViewModel
 {
     public class CollapsibleLogRowViewModel : LogRowViewModelBase
     {
-        private ObservableCollection<LogRowViewModel> _subRows;
-        public ObservableCollection<LogRowViewModel> SubRows
+        private ReactiveList<LogRowViewModel> _subRows;
+        public ReactiveList<LogRowViewModel> SubRows
         {
             get { return _subRows; }
             set { this.RaiseAndSetIfChanged(ref _subRows, value); }
+        }
+
+        private IReactiveDerivedList<LogRowViewModel> _filteredList;
+
+        public IReactiveDerivedList<LogRowViewModel> FilteredList
+        {
+            get { return _filteredList; }
+            set { this.RaiseAndSetIfChanged(ref _filteredList, value); }
         }
 
         private bool _isCollapsed;
@@ -20,9 +31,15 @@ namespace SmartLogs.ViewModel
             set { this.RaiseAndSetIfChanged(ref _isCollapsed, value); }
         }
 
-        public CollapsibleLogRowViewModel()
+        public CollapsibleLogRowViewModel(IObservable<LoggingLevel> level) : base(null)
         {
-            SubRows = new ObservableCollection<LogRowViewModel>();
+            SubRows = new ReactiveList<LogRowViewModel>();
+
+            level.Subscribe(logLevel =>
+            {
+                FilteredList = SubRows.CreateDerivedCollection(x => x, x => x.Log.LoggingLevel >= logLevel);
+            });
+
             IsCollapsed = true;
 
             // TODO: make more reactivy

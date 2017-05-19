@@ -14,7 +14,7 @@ namespace SmartLogs.Services.LogDeserializerService
     public class LogDeserializerService
     {
         // the order of these matter, each parser will be processed sequentially
-        private static readonly IMessageParser[] Parsers = { new ExceptionMessageParser(), new AppEventMessageParser()};
+        private static readonly IMessageParser[] Parsers = { new InteractionMessageParser(),  new ExceptionMessageParser(), new AppEventMessageParser()};
         public async Task<LogBase> DeserializeLineAsync(string line)
         {
             var matches = Regex.Matches(line, @"(?<=\[)(.*?)(?=\])");
@@ -84,9 +84,8 @@ namespace SmartLogs.Services.LogDeserializerService
             await Task.Run(() => ZipFile.ExtractToDirectory(copied.Path, tmpFolder.Path));
             await copied.DeleteAsync();
 
-            string allText = "";
-            LogDeserializerService service = new LogDeserializerService();
-            List<LogBase> logs = new List<LogBase>();
+            var service = new LogDeserializerService();
+            var logs = new List<LogBase>();
             foreach (var logFile in await tmpFolder.GetFilesAsync())
             {
                 var text = File.ReadAllLines(logFile.Path);

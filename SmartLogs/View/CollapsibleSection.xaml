@@ -34,7 +34,7 @@
 
                 <StackPanel>
                     <TextBlock TextAlignment="Left">
-                <Run Text="{Binding SubRows.Count}" />
+                <Run Text="{Binding FilteredList.Count}" />
                 <Run Text=" events" />
                     </TextBlock>
                     <TextBlock Grid.Row="1"
@@ -67,7 +67,7 @@
             </Grid>
             
             <ItemsControl Grid.Row="1"
-                          ItemsSource="{Binding SubRows}"
+                          ItemsSource="{Binding FilteredList}"
                           ItemTemplateSelector="{StaticResource LogTemplateSelector}"></ItemsControl>
         </Grid>
         

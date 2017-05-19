@@ -108,9 +108,11 @@
     <Compile Include="Model\NavigationEventLog.cs" />
     <Compile Include="Model\ApplicationLifeCycleEvent.cs" />
     <Compile Include="Services\LogDeserializerService\MessageParsers\AppEventMessageParser.cs" />
+    <Compile Include="Services\LogDeserializerService\MessageParsers\ExceptionMessageParser.cs" />
     <Compile Include="Services\LogDeserializerService\MessageParsers\IMessageParser.cs" />
     <Compile Include="Services\LogDeserializerService\LogDeserializerService.cs" />
     <Compile Include="Services\LogDeserializerService\LogMetaData.cs" />
+    <Compile Include="Services\LogDeserializerService\MessageParsers\InteractionMessageParser.cs" />
     <Compile Include="Services\LoggerService\ISmartLoggingService.cs" />
     <Compile Include="Services\LoggerService\SmartLoggingService.cs" />
     <Compile Include="Model\UserActionVerb.cs" />

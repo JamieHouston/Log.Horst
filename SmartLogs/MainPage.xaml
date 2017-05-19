@@ -7,6 +7,7 @@
       xmlns:templateSelectors="using:SmartLogs.TemplateSelectors"
       xmlns:eventLogViews="using:SmartLogs.View.EventLogViews"
       xmlns:view="using:SmartLogs.View"
+      xmlns:viewModel="using:SmartLogs.ViewModel"
       mc:Ignorable="d">
 
     <SplitView>
@@ -21,9 +22,16 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
+                
+                <ComboBox x:Name="LevelComboBox">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="viewModel:LogLevelSelectionViewModel">
+                            <TextBlock Text="{x:Bind Label}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate> 
+                </ComboBox>
                 <ScrollViewer Grid.Row="1">
-                    <ItemsControl ItemsSource="{Binding Logs}"
+                    <ItemsControl x:Name="LogsListView"
                                   ItemTemplateSelector="{StaticResource LogTemplateSelector}"></ItemsControl>
                 </ScrollViewer>
 
