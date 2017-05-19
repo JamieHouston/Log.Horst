@@ -1,26 +1,45 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+using ReactiveUI;
 using SmartLogs.Model;
 
 namespace SmartLogs.ViewModel
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ReactiveObject
     {
-        private ObservableCollection<LogRowViewModelBase> _logs;
-        public ObservableCollection<LogRowViewModelBase> Logs
+        private ReactiveList<LogRowViewModelBase> _logs;
+        public ReactiveList<LogRowViewModelBase> Logs
         {
             get { return _logs; }
-            set { Set(ref _logs, value); }
+            set { this.RaiseAndSetIfChanged(ref _logs, value); }
         }
+
+        private ReactiveList<LoggingLevel> _levels;
+
+        public ReactiveList<LoggingLevel> Levels
+        {
+            get { return _levels; }
+            set { this.RaiseAndSetIfChanged(ref _levels, value); }
+        }
+
+        private LoggingLevel _selectedLevel;
+        public LoggingLevel SelectedLevel
+        {
+            get { return _selectedLevel; }
+            set { this.RaiseAndSetIfChanged(ref _selectedLevel, value); }
+        }
+
+        public IReactiveDerivedList<LogRowViewModel> FilteredList { get; set; }
 
         public async Task RefreshAsync()
         {
+            SelectedLevel = LoggingLevel.Information;
+
             var logs = await App.DeserializerService.ImportLogsFromFileAsync();
             //var logs = await App.LoggingService.GetAllLogs();
 
 
-            Logs = new ObservableCollection<LogRowViewModelBase>();
+            Logs = new ReactiveList<LogRowViewModelBase>();
 
             CollapsibleLogRowViewModel currentCollapsedSection = null;
             foreach (var log in logs)

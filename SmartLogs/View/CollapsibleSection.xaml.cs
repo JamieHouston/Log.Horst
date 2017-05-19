@@ -1,27 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+using ReactiveUI;
+using SmartLogs.ViewModel;
 
 namespace SmartLogs.View
 {
-    public sealed partial class CollapsibleSection : UserControl
+    public sealed partial class CollapsibleSection : IViewFor<CollapsibleLogRowViewModel>
     {
         public CollapsibleSection()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            DataContextChanged += CollapsibleSection_DataContextChanged;
+
+            this.WhenActivated(WireupBindings);
         }
+
+        private void WireupBindings(Action<IDisposable> d)
+        {
+            d(this.BindCommand(ViewModel, vm => vm.ToggleCollapseCommand, v => v.CollapseGrid));
+            d(this.BindCommand(ViewModel, vm => vm.ToggleCollapseCommand, v => v.CollapsedGrid));
+        }
+
+        private void CollapsibleSection_DataContextChanged(Windows.UI.Xaml.FrameworkElement sender, Windows.UI.Xaml.DataContextChangedEventArgs args)
+        {
+            ViewModel = (DataContext as CollapsibleLogRowViewModel);
+        }
+
+        object IViewFor.ViewModel
+        {
+            get { return ViewModel; }
+            set { ViewModel = (CollapsibleLogRowViewModel)value; }
+        }
+
+        public CollapsibleLogRowViewModel ViewModel { get; set; }
     }
 }

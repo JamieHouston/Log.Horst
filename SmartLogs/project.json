@@ -5,7 +5,7 @@
     "Microsoft.ApplicationInsights.WindowsApps": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
-    "MvvmLight": "5.2.0"
+    "reactiveui": "7.3.0"
   },
   "frameworks": {
     "uap10.0": {}

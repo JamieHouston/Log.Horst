@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using ReactiveUI;
 using SmartLogs.Model;
 
 namespace SmartLogs.ViewModel
@@ -9,7 +9,7 @@ namespace SmartLogs.ViewModel
         public LogBase Log
         {
             get { return _log; }
-            set { Set(ref _log, value); }
+            set { this.RaiseAndSetIfChanged(ref _log, value); }
         }
 
         public LogRowViewModel(LogBase log)

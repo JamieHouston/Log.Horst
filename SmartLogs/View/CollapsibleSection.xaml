@@ -16,13 +16,8 @@
 
 
 
-        <Grid Visibility="{Binding IsCollapsed, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Grid Visibility="{Binding IsCollapsed, Converter={StaticResource BoolToVisibilityConverter}}" x:Name="CollapsedGrid">
             
-            <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="Tapped">
-                    <core:InvokeCommandAction Command="{Binding ToggleCollapseCommand}"></core:InvokeCommandAction>
-                </core:EventTriggerBehavior>
-            </interactivity:Interaction.Behaviors>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -61,17 +56,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <Grid VerticalAlignment="Center">
+            <Grid VerticalAlignment="Center" x:Name="CollapseGrid">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="Tapped">
-                        <core:InvokeCommandAction Command="{Binding ToggleCollapseCommand}"></core:InvokeCommandAction>
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
 
                 <Image Source="/Assets/Icons/Collapse.png" Height="25" Width="25" Margin="0, 0 5, 10" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Text="Collapse" FontSize="{StaticResource SmallTextSize}" VerticalAlignment="Center" Foreground="{StaticResource WeakTextBrush}"></TextBlock>
