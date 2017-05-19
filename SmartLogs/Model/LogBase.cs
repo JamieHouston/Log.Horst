@@ -9,7 +9,7 @@ namespace SmartLogs.Model
         {
             Message = message;
             LogType = type;
-            LogTimeStamp = DateTime.Now;
+            LogTimeStamp = metaData.DateTime;
             LogLocation = $"{metaData.FileName} - {metaData.MethodName} - {metaData.LineNumber}";
         }
 
