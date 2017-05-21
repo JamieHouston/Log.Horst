@@ -90,10 +90,10 @@ namespace Log.Horst.Client
             throw new NotImplementedException();
         }
 
-        public async Task FlushLogsToDiskAsync()
+        public Task FlushLogsToDiskAsync()
         {
             // TODO
-
+            throw new NotImplementedException();
         }
 
         private Task LogEventAsync(LogBase log)

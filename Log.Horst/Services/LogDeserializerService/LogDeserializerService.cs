@@ -110,7 +110,7 @@ namespace Log.Horst.Services.LogDeserializerService
                 await tmpFolder.DeleteAsync();
                 return logs;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debugger.Break();
                 // TODO: failed to load logs - notify user
