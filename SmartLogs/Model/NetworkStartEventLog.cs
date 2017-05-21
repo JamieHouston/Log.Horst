@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SmartLogs.Services.LogDeserializerService;
-using SmartLogs.Utils;
+﻿using Log.Horst.Services.LogDeserializerService;
+using Log.Horst.Utils;
 
-namespace SmartLogs.Model
+namespace Log.Horst.Model
 {
     public class NetworkStartEventLog : LogBase
     {

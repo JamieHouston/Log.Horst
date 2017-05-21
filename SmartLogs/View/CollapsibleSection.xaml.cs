@@ -1,8 +1,8 @@
 ﻿using System;
+using Log.Horst.ViewModel;
 using ReactiveUI;
-using SmartLogs.ViewModel;
 
-namespace SmartLogs.View
+namespace Log.Horst.View
 {
     public sealed partial class CollapsibleSection : IViewFor<CollapsibleLogRowViewModel>
     {

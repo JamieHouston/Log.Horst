@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace SmartLogs.Utils
+namespace Log.Horst.Utils
 {
     //http://stackoverflow.com/questions/9543715/generating-human-readable-usable-short-but-unique-ids
     public static class ShortUidGenerator

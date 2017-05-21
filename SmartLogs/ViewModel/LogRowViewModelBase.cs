@@ -1,7 +1,7 @@
-﻿using ReactiveUI;
-using SmartLogs.Model;
+﻿using Log.Horst.Model;
+using ReactiveUI;
 
-namespace SmartLogs.ViewModel
+namespace Log.Horst.ViewModel
 {
     public abstract class LogRowViewModelBase : ReactiveObject
     {

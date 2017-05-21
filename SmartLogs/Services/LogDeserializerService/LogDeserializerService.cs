@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Storage;
-using SmartLogs.Model;
-using SmartLogs.Services.LogDeserializerService.MessageParsers;
+using Log.Horst.Model;
+using Log.Horst.Services.LogDeserializerService.MessageParsers;
 
-namespace SmartLogs.Services.LogDeserializerService
+namespace Log.Horst.Services.LogDeserializerService
 {
     public class LogDeserializerService
     {

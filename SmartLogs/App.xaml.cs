@@ -7,20 +7,18 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using SmartLogs.Model;
-using SmartLogs.Services.LogDeserializerService;
-using SmartLogs.Services.LoggerService;
-using SmartLogs.ViewModel;
-using Splat;
+using Log.Horst.Model;
+using Log.Horst.Services.LogDeserializerService;
+using Log.Horst.Services.LoggerService;
+using Log.Horst.View.Pages;
 
-namespace SmartLogs
+namespace Log.Horst
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
     {
-        public static SmartLoggingService LoggingService = new SmartLoggingService();
         public static LogDeserializerService DeserializerService = new LogDeserializerService();
 
         /// <summary>
@@ -34,12 +32,6 @@ namespace SmartLogs
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-            
-
-            LoggingService.LogAppEventAsync(ApplicationLifeCycleEvent.Created);
-
-
         }
 
         /// <summary>
@@ -49,8 +41,6 @@ namespace SmartLogs
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
-            LoggingService.LogAppEventAsync(ApplicationLifeCycleEvent.Started, $"Started with arguments {e.Arguments}");
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -83,8 +73,7 @@ namespace SmartLogs
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(View.Pages.Shell), e.Arguments);
-                LoggingService.LogNavigationEventAsync("Shell", "Navigation from app launch");
+                rootFrame.Navigate(typeof(Shell), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();
@@ -122,8 +111,6 @@ namespace SmartLogs
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-
-            LoggingService.LogAppEventAsync(ApplicationLifeCycleEvent.Suspended);
 
             //TODO: Save application state and stop any background activity
             deferral.Complete();

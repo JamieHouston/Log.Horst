@@ -1,7 +1,6 @@
-﻿using System.Dynamic;
-using SmartLogs.Services.LogDeserializerService;
+﻿using Log.Horst.Services.LogDeserializerService;
 
-namespace SmartLogs.Model
+namespace Log.Horst.Model
 {
     public class NetworkStopEventLog : LogBase
     {

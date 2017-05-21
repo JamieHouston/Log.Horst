@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SmartLogs.Services.Navigation
+namespace Log.Horst.Services.Navigation
 {
     public interface INavigationService
     {

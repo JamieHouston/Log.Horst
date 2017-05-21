@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using SmartLogs.Model;
-using SmartLogs.ViewModel;
+using Log.Horst.Model;
+using Log.Horst.ViewModel;
 
-namespace SmartLogs.TemplateSelectors
+namespace Log.Horst.TemplateSelectors
 {
     public class LogTemplateSelector : DataTemplateSelector
     {

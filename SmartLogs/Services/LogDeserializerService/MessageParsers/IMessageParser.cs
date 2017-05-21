@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using SmartLogs.Model;
+using Log.Horst.Model;
 
-namespace SmartLogs.Services.LogDeserializerService.MessageParsers
+namespace Log.Horst.Services.LogDeserializerService.MessageParsers
 {
     public interface IMessageParser
     {

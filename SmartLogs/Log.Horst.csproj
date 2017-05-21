@@ -7,8 +7,8 @@
     <ProjectGuid>{47CFF361-DBC0-43FC-A1F9-230A402EFA71}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SmartLogs</RootNamespace>
-    <AssemblyName>SmartLogs</AssemblyName>
+    <RootNamespace>Log.Horst</RootNamespace>
+    <AssemblyName>Log.Horst</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>

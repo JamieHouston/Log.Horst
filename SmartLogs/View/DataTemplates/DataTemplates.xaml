@@ -1,12 +1,10 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    x:Class="SmartLogs.View.DataTemplates.DataTemplates"
-    xmlns:local="using:SmartLogs.View.DataTemplates"
-    xmlns:view="using:SmartLogs.View"
-    xmlns:model="using:SmartLogs.Model"
-    xmlns:templateSelectors="using:SmartLogs.TemplateSelectors"
-    xmlns:viewModel="using:SmartLogs.ViewModel">
+    xmlns:view="using:Log.Horst.View"
+    xmlns:templateSelectors="using:Log.Horst.TemplateSelectors"
+    xmlns:viewModel="using:Log.Horst.ViewModel"
+    x:Class="Log.Horst.View.DataTemplates.DataTemplates">
 
     <DataTemplate x:Key="NavigationLogTemplate"
                   x:DataType="viewModel:LogRowViewModel">

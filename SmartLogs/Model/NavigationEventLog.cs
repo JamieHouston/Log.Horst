@@ -1,7 +1,6 @@
-﻿using System;
-using SmartLogs.Services.LogDeserializerService;
+﻿using Log.Horst.Services.LogDeserializerService;
 
-namespace SmartLogs.Model
+namespace Log.Horst.Model
 {
     public class NavigationEventLog : LogBase
     {

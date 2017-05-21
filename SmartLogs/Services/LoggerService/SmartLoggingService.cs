@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Storage;
-using SmartLogs.Model;
+using Log.Horst.Model;
 
-namespace SmartLogs.Services.LoggerService
+namespace Log.Horst.Services.LoggerService
 {
     public class SmartLoggingService : ISmartLoggingService
     {

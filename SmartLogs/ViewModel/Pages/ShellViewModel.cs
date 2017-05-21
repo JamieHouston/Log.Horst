@@ -1,12 +1,10 @@
 ﻿using System.Reactive;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
+using Log.Horst.Model;
+using Log.Horst.Services.Navigation;
 using ReactiveUI;
-using SmartLogs.Model;
-using SmartLogs.Services.Navigation;
 using Splat;
 
-namespace SmartLogs.ViewModel.Pages
+namespace Log.Horst.ViewModel.Pages
 {
     public class ShellViewModel : ReactiveObject
     {

@@ -1,12 +1,8 @@
-﻿<Application x:Class="SmartLogs.App"
+﻿<Application x:Class="Log.Horst.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:SmartLogs"
-             xmlns:view="using:SmartLogs.View"
-             xmlns:templateSelectors="using:SmartLogs.TemplateSelectors"
-             xmlns:converters="using:SmartLogs.Converters"
-             xmlns:model="using:SmartLogs.Model"
-             xmlns:dataTemplates="using:SmartLogs.View.DataTemplates"
+             xmlns:converters="using:Log.Horst.Converters"
+             xmlns:dataTemplates="using:Log.Horst.View.DataTemplates"
              RequestedTheme="Light">
 
     <Application.Resources>

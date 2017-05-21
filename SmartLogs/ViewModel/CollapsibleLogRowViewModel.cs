@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Reactive;
-using System.Reactive.Linq;
+using Log.Horst.Model;
 using ReactiveUI;
-using SmartLogs.Model;
 
-namespace SmartLogs.ViewModel
+namespace Log.Horst.ViewModel
 {
     public class CollapsibleLogRowViewModel : LogRowViewModelBase
     {

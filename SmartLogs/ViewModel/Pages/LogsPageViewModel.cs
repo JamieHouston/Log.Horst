@@ -1,9 +1,9 @@
 using System;
+using Log.Horst.Model;
 using ReactiveUI;
-using SmartLogs.Model;
 using Splat;
 
-namespace SmartLogs.ViewModel.Pages
+namespace Log.Horst.ViewModel.Pages
 {
     public class LogsPageViewModel : ReactiveObject
     {

@@ -1,9 +1,8 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
+using Log.Horst.ViewModel.Pages;
 using ReactiveUI;
-using SmartLogs.ViewModel.Pages;
 
-namespace SmartLogs.View.Pages
+namespace Log.Horst.View.Pages
 {
     public sealed partial class TimelinePage : IViewFor<TimelinePageViewModel>
     {

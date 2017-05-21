@@ -1,4 +1,4 @@
-﻿namespace SmartLogs.Model
+﻿namespace Log.Horst.Model
 {
     public enum UserActionVerb
     {

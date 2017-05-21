@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
-using Windows.UI.Xaml;
+using Log.Horst.Model;
 using ReactiveUI;
-using SmartLogs.Model;
 using Splat;
 
-namespace SmartLogs.ViewModel.Pages
+namespace Log.Horst.ViewModel.Pages
 {
     public class TimelinePageViewModel : ReactiveObject
     {

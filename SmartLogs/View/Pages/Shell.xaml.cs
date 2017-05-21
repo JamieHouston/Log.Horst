@@ -2,12 +2,12 @@ using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Log.Horst.Services.Navigation;
+using Log.Horst.ViewModel.Pages;
 using ReactiveUI;
-using SmartLogs.Services.Navigation;
-using SmartLogs.ViewModel.Pages;
 using Splat;
 
-namespace SmartLogs.View.Pages
+namespace Log.Horst.View.Pages
 {
     public sealed partial class Shell : IViewFor<ShellViewModel>, INavigationService
     {

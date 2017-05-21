@@ -1,10 +1,9 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
+using Log.Horst.ViewModel.Pages;
 using ReactiveUI;
-using SmartLogs.ViewModel.Pages;
 using Telerik.UI.Xaml.Controls.Grid;
 
-namespace SmartLogs.View.Pages
+namespace Log.Horst.View.Pages
 {
     public sealed partial class LogsPage : IViewFor<LogsPageViewModel>
     {

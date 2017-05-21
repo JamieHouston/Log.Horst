@@ -1,7 +1,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
-namespace SmartLogs.Utils
+namespace Log.Horst.Utils
 {
     public static class UiHelper
     {

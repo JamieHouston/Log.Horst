@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SmartLogs.Model;
+using Log.Horst.Model;
 
-namespace SmartLogs.Services.LoggerService
+namespace Log.Horst.Services.LoggerService
 {
     public interface ISmartLoggingService
     {
