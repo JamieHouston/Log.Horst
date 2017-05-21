@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Windows.Storage;
 using Log.Horst.Model;
 
-namespace Log.Horst.Services.LoggerService
+namespace Log.Horst.Client
 {
     public class SmartLoggingService : ISmartLoggingService
     {
@@ -93,20 +92,7 @@ namespace Log.Horst.Services.LoggerService
 
         public async Task FlushLogsToDiskAsync()
         {
-            string fullLog = "";
-
-            foreach (var l in _inMemoryLogs)
-            {
-                fullLog += (l.LogMessage + "\n");
-            }
-
-            var logFlie = await
-                ApplicationData.Current.LocalFolder.CreateFileAsync($"Log_{DateTime.Now.ToString("yy_MM_dd_hh_mm_ss")}.txt", CreationCollisionOption.ReplaceExisting);
-
-            await FileIO.WriteTextAsync(logFlie, fullLog);
-
-            // TO-DO: flush in memory logs to db
-            // TO-DO: empty in-memory queue
+            // TODO
 
         }
 

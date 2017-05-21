@@ -1,7 +1,6 @@
 using System;
-using Log.Horst.Model;
 
-namespace Log.Horst.Services.LogDeserializerService
+namespace Log.Horst.Model
 {
     public class LogMetaData
     {

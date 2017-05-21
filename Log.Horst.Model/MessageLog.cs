@@ -1,6 +1,4 @@
-﻿using Log.Horst.Services.LogDeserializerService;
-
-namespace Log.Horst.Model
+﻿namespace Log.Horst.Model
 {
     public class MessageLog : LogBase
     {

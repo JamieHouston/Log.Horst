@@ -1,7 +1,4 @@
-﻿using Log.Horst.Services.LogDeserializerService;
-using Log.Horst.Utils;
-
-namespace Log.Horst.Model
+﻿namespace Log.Horst.Model
 {
     public class NetworkStartEventLog : LogBase
     {

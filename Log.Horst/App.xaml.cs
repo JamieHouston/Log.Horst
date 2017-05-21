@@ -9,7 +9,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Log.Horst.Model;
 using Log.Horst.Services.LogDeserializerService;
-using Log.Horst.Services.LoggerService;
 using Log.Horst.View.Pages;
 
 namespace Log.Horst

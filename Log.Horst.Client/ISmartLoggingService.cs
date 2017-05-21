@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Log.Horst.Model;
 
-namespace Log.Horst.Services.LoggerService
+namespace Log.Horst.Client
 {
     public interface ISmartLoggingService
     {

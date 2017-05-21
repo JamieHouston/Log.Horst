@@ -1,5 +1,4 @@
 ﻿using System;
-using Log.Horst.Services.LogDeserializerService;
 
 namespace Log.Horst.Model
 {

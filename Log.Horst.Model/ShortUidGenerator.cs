@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Log.Horst.Utils
+namespace Log.Horst.Model
 {
     //http://stackoverflow.com/questions/9543715/generating-human-readable-usable-short-but-unique-ids
     public static class ShortUidGenerator
