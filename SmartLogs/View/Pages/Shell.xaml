@@ -1,0 +1,55 @@
+﻿<Page x:Class="SmartLogs.View.Pages.Shell"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="#F4F6F9">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Styles/SplitViewStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <SplitView x:Name="ShellSplitView" 
+               IsPaneOpen="False"
+               DisplayMode="CompactOverlay"
+               CompactPaneLength="48"
+               OpenPaneLength="200"
+               PaneBackground="{ThemeResource SplitViewBackgroundBrush}">
+        <SplitView.Pane>
+            <StackPanel>
+                <!-- Menu (hamburger) button -->
+                <RadioButton Style="{StaticResource SplitViewMenuButtonStyle}"
+                             Click="OnMenuButtonClicked"/>
+
+                <!-- Home button -->
+                <RadioButton x:Name="TimelineLeftNavButton"
+                             Content="Timeline"
+                             Tag="&#xE8D0;" GroupName="Menu"
+                             Style="{StaticResource SplitViewNavButtonStyle}"/>
+
+                <RadioButton x:Name="LogsLeftNavButton"
+                             Content="Logs"
+                             GroupName="Menu"
+                             Tag="&#xEA37;"
+                             Style="{StaticResource SplitViewNavButtonStyle}" />
+
+                <RadioButton x:Name="LoadLogs"
+                             Content="Refresh Logs"
+                             Tag="&#xE72C;"
+                             GroupName="Menu"
+                             Style="{StaticResource SplitViewNavButtonStyle}" IsChecked="False"/>
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Frame x:Name="AppSplitViewFrame">
+
+            </Frame>
+
+        </SplitView.Content>
+    </SplitView>
+</Page>

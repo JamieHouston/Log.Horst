@@ -1,5 +1,4 @@
-﻿using SmartLogs.LoggerService;
-using SmartLogs.Services.LogDeserializerService;
+﻿using SmartLogs.Services.LogDeserializerService;
 
 namespace SmartLogs.Model
 {

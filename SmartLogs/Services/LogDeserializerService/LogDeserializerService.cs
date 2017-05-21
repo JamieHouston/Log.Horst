@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -8,13 +9,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Storage;
 using SmartLogs.Model;
+using SmartLogs.Services.LogDeserializerService.MessageParsers;
 
 namespace SmartLogs.Services.LogDeserializerService
 {
     public class LogDeserializerService
     {
         // the order of these matter, each parser will be processed sequentially
-        private static readonly IMessageParser[] Parsers = { new InteractionMessageParser(),  new ExceptionMessageParser(), new AppEventMessageParser()};
+        private static readonly IMessageParser[] Parsers = {new AppLifeCycleMessageParser(), new InteractionMessageParser(),  new ExceptionMessageParser(), new AppEventMessageParser()};
         public async Task<LogBase> DeserializeLineAsync(string line)
         {
             var matches = Regex.Matches(line, @"(?<=\[)(.*?)(?=\])");
@@ -70,37 +72,53 @@ namespace SmartLogs.Services.LogDeserializerService
 
         public async Task<IEnumerable<LogBase>> ImportLogsFromFileAsync()
         {
-            var picker =
-                new Windows.Storage.Pickers.FileOpenPicker
-                {
-                    ViewMode = Windows.Storage.Pickers.PickerViewMode.List,
-                    SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Downloads
-                };
-            picker.FileTypeFilter.Add(".zip");
-
-            var file = await picker.PickSingleFileAsync();
-            var copied = await file.CopyAsync(ApplicationData.Current.LocalFolder);
-            var tmpFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("tmp-logs", CreationCollisionOption.ReplaceExisting);
-            await Task.Run(() => ZipFile.ExtractToDirectory(copied.Path, tmpFolder.Path));
-            await copied.DeleteAsync();
-
-            var service = new LogDeserializerService();
-            var logs = new List<LogBase>();
-            foreach (var logFile in await tmpFolder.GetFilesAsync())
+            try
             {
-                var text = File.ReadAllLines(logFile.Path);
-                foreach (var line in text)
-                {
-                    var log = await service.DeserializeLineAsync(line);
-                    if (log != null)
+                var picker =
+                    new Windows.Storage.Pickers.FileOpenPicker
                     {
-                        logs.Add(log);
+                        ViewMode = Windows.Storage.Pickers.PickerViewMode.List,
+                        SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Downloads
+                    };
+                picker.FileTypeFilter.Add(".zip");
+
+                var file = await picker.PickSingleFileAsync();
+                if (file == null)
+                {
+                    return null;
+                }
+                var copied = await file.CopyAsync(ApplicationData.Current.LocalFolder);
+                var tmpFolder =
+                    await ApplicationData.Current.LocalFolder.CreateFolderAsync("tmp-logs",
+                        CreationCollisionOption.ReplaceExisting);
+                await Task.Run(() => ZipFile.ExtractToDirectory(copied.Path, tmpFolder.Path));
+                await copied.DeleteAsync();
+
+                var service = new LogDeserializerService();
+                var logs = new List<LogBase>();
+                foreach (var logFile in await tmpFolder.GetFilesAsync())
+                {
+                    var text = File.ReadAllLines(logFile.Path);
+                    foreach (var line in text)
+                    {
+                        var log = await service.DeserializeLineAsync(line);
+                        if (log != null)
+                        {
+                            logs.Add(log);
+                        }
                     }
                 }
+
+                await tmpFolder.DeleteAsync();
+                return logs;
+            }
+            catch (Exception e)
+            {
+                Debugger.Break();
+                // TODO: failed to load logs - notify user
             }
 
-            await tmpFolder.DeleteAsync();
-            return logs;
+            return null;
         }
     }
 }

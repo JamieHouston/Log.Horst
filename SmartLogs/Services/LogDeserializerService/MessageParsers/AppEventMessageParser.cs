@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using SmartLogs.Model;
 
-namespace SmartLogs.Services.LogDeserializerService
+namespace SmartLogs.Services.LogDeserializerService.MessageParsers
 {
     public class AppEventMessageParser : IMessageParser
     {

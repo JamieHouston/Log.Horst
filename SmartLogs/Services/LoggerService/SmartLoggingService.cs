@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using SmartLogs.Model;
 
-namespace SmartLogs.LoggerService
+namespace SmartLogs.Services.LoggerService
 {
     public class SmartLoggingService : ISmartLoggingService
     {

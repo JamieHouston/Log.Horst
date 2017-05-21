@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SmartLogs.Model;
 
-namespace SmartLogs.LoggerService
+namespace SmartLogs.Services.LoggerService
 {
     public interface ISmartLoggingService
     {

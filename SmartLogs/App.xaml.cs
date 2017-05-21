@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using SmartLogs.LoggerService;
 using SmartLogs.Model;
 using SmartLogs.Services.LogDeserializerService;
-using SmartLogs.View;
+using SmartLogs.Services.LoggerService;
+using SmartLogs.ViewModel;
+using Splat;
 
 namespace SmartLogs
 {
@@ -28,6 +22,7 @@ namespace SmartLogs
     {
         public static SmartLoggingService LoggingService = new SmartLoggingService();
         public static LogDeserializerService DeserializerService = new LogDeserializerService();
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -40,7 +35,11 @@ namespace SmartLogs
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
+            
+
             LoggingService.LogAppEventAsync(ApplicationLifeCycleEvent.Created);
+
+
         }
 
         /// <summary>
@@ -50,6 +49,7 @@ namespace SmartLogs
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
             LoggingService.LogAppEventAsync(ApplicationLifeCycleEvent.Started, $"Started with arguments {e.Arguments}");
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -83,11 +83,23 @@ namespace SmartLogs
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                LoggingService.LogNavigationEventAsync("MainPage", "Navigation from app launch");
+                rootFrame.Navigate(typeof(View.Pages.Shell), e.Arguments);
+                LoggingService.LogNavigationEventAsync("Shell", "Navigation from app launch");
             }
             // Ensure the current window is active
             Window.Current.Activate();
+
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+            {
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                if (titleBar != null)
+                {
+                    titleBar.ButtonBackgroundColor = Color.FromArgb(255, 0, 112, 210);
+                    titleBar.ButtonForegroundColor = Colors.White;
+                    titleBar.BackgroundColor = Color.FromArgb(255, 0, 112, 210);
+                    titleBar.ForegroundColor = Colors.White;
+                }
+            }
         }
 
         /// <summary>

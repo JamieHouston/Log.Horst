@@ -1,0 +1,14 @@
+﻿<Page
+    x:Class="SmartLogs.View.Pages.LogsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartLogs.View.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:grid="using:Telerik.UI.Xaml.Controls.Grid"
+    mc:Ignorable="d">
+
+    <Grid>
+        <grid:RadDataGrid x:Name="LogDataGrid" AutoGenerateColumns="False" CanUserChooseColumns="True"/>
+    </Grid>
+</Page>
