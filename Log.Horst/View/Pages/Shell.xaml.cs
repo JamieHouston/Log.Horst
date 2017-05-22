@@ -26,6 +26,10 @@ namespace Log.Horst.View.Pages
             d(this.BindCommand(ViewModel, vm => vm.NavigateToTimelineCommand, v => v.TimelineLeftNavButton));
             d(this.BindCommand(ViewModel, vm => vm.NavigateToLogsCommand, v => v.LogsLeftNavButton));
             d(this.BindCommand(ViewModel, vm => vm.LoadLogsCommand, v => v.LoadLogs));
+            d(this.BindCommand(ViewModel, vm => vm.LoadLogsCommand, v => v.LoadButton));
+
+            d(ViewModel.Logs.IsEmptyChanged.Subscribe(isEmpty => LoadGrid.Visibility =
+                isEmpty ? Visibility.Visible : Visibility.Collapsed));
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

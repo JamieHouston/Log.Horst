@@ -11,16 +11,20 @@ namespace Log.Horst.ViewModel.Pages
         {
             Logs = new ReactiveList<LogBase>();
             var appVm = Locator.Current.GetService<ShellViewModel>();
-            appVm.Logs.Changed.Subscribe(_ =>
-            {
-                Logs.Clear();
-                var logs = appVm.Logs;
-                foreach (var log in logs)
-                {
-                    Logs.Add(log);
-                }
-            });
+            RefreshLogs(appVm);
+            appVm.Logs.Changed.Subscribe(_ => { RefreshLogs(appVm); });
         }
+
+        private void RefreshLogs(ShellViewModel appVm)
+        {
+            Logs.Clear();
+            var logs = appVm.Logs;
+            foreach (var log in logs)
+            {
+                Logs.Add(log);
+            }
+        }
+
         private ReactiveList<LogBase> _logs;
         public ReactiveList<LogBase> Logs
         {

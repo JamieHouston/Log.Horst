@@ -14,42 +14,58 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <SplitView x:Name="ShellSplitView" 
-               IsPaneOpen="False"
-               DisplayMode="CompactOverlay"
-               CompactPaneLength="48"
-               OpenPaneLength="200"
-               PaneBackground="{ThemeResource SplitViewBackgroundBrush}">
-        <SplitView.Pane>
-            <StackPanel>
-                <!-- Menu (hamburger) button -->
-                <RadioButton Style="{StaticResource SplitViewMenuButtonStyle}"
-                             Click="OnMenuButtonClicked"/>
+    <Grid>
+        <SplitView x:Name="ShellSplitView"
+                   IsPaneOpen="False"
+                   DisplayMode="CompactOverlay"
+                   CompactPaneLength="48"
+                   OpenPaneLength="200"
+                   PaneBackground="{ThemeResource SplitViewBackgroundBrush}">
+            <SplitView.Pane>
+                <StackPanel>
+                    <!-- Menu (hamburger) button -->
+                    <RadioButton Style="{StaticResource SplitViewMenuButtonStyle}"
+                                 Click="OnMenuButtonClicked" />
 
-                <!-- Home button -->
-                <RadioButton x:Name="TimelineLeftNavButton"
-                             Content="Timeline"
-                             Tag="&#xE8D0;" GroupName="Menu"
-                             Style="{StaticResource SplitViewNavButtonStyle}"/>
+                    <!-- Home button -->
+                    <RadioButton x:Name="TimelineLeftNavButton"
+                                 Content="Timeline"
+                                 Tag="&#xE8D0;"
+                                 GroupName="Menu"
+                                 IsChecked="True"
+                                 Style="{StaticResource SplitViewNavButtonStyle}" />
 
-                <RadioButton x:Name="LogsLeftNavButton"
-                             Content="Logs"
-                             GroupName="Menu"
-                             Tag="&#xEA37;"
-                             Style="{StaticResource SplitViewNavButtonStyle}" />
+                    <RadioButton x:Name="LogsLeftNavButton"
+                                 Content="Logs"
+                                 GroupName="Menu"
+                                 Tag="&#xEA37;"
+                                 Style="{StaticResource SplitViewNavButtonStyle}" />
 
-                <RadioButton x:Name="LoadLogs"
-                             Content="Refresh Logs"
-                             Tag="&#xE72C;"
-                             GroupName="Menu"
-                             Style="{StaticResource SplitViewNavButtonStyle}" IsChecked="False"/>
-            </StackPanel>
-        </SplitView.Pane>
-        <SplitView.Content>
-            <Frame x:Name="AppSplitViewFrame">
+                    <RadioButton x:Name="LoadLogs"
+                                 Content="Refresh Logs"
+                                 Tag="&#xE72C;"
+                                 GroupName="Menu"
+                                 Style="{StaticResource SplitViewNavButtonStyle}"
+                                 IsChecked="False" />
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame x:Name="AppSplitViewFrame">
 
-            </Frame>
+                </Frame>
 
-        </SplitView.Content>
-    </SplitView>
+            </SplitView.Content>
+        </SplitView>
+
+        <!-- Load Grid-->
+        <Grid x:Name="LoadGrid"
+              Background="#F4F6F9"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <Button Content="Open Log File"
+                    x:Name="LoadButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
 </Page>

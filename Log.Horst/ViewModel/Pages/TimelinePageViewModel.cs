@@ -22,35 +22,8 @@ namespace Log.Horst.ViewModel.Pages
             SelectedLevel = Levels.FirstOrDefault();
 
             var appVm = Locator.Current.GetService<ShellViewModel>();
-            appVm.Logs.Changed.Subscribe(_ =>
-            {
-                Logs.Clear();
-                var logs = appVm.Logs;
-                CollapsibleLogRowViewModel currentCollapsedSection = null;
-                foreach (var log in logs)
-                {
-                    if (log is MessageLog)
-                    {
-                        if (currentCollapsedSection == null)
-                        {
-                            currentCollapsedSection = new CollapsibleLogRowViewModel(this.WhenAnyValue(x => x.SelectedLevel.LoggingLevel));
-                            Logs.Add(currentCollapsedSection);
-                        }
-
-                        currentCollapsedSection.SubRows.Add(new LogRowViewModel(log));
-                    }
-                    else
-                    {
-                        currentCollapsedSection = null;
-                        Logs.Add(new LogRowViewModel(log));
-                    }
-                }
-            });
-
-            Refresh = ReactiveCommand.Create(() =>
-            {
-                
-            });
+            RefreshLogs(appVm);
+            appVm.Logs.Changed.Subscribe(_ => { RefreshLogs(appVm); });
 
 
             this.WhenAnyValue(x => x.SelectedLevel).Subscribe(level =>
@@ -58,6 +31,32 @@ namespace Log.Horst.ViewModel.Pages
                 FilteredList = Logs.CreateDerivedCollection(x => x,
                     x => x.Log == null || x.Log?.LoggingLevel >= level.LoggingLevel);
             });
+        }
+
+        private void RefreshLogs(ShellViewModel appVm)
+        {
+            Logs.Clear();
+            var logs = appVm.Logs;
+            CollapsibleLogRowViewModel currentCollapsedSection = null;
+            foreach (var log in logs)
+            {
+                if (log is MessageLog)
+                {
+                    if (currentCollapsedSection == null)
+                    {
+                        currentCollapsedSection =
+                            new CollapsibleLogRowViewModel(this.WhenAnyValue(x => x.SelectedLevel.LoggingLevel));
+                        Logs.Add(currentCollapsedSection);
+                    }
+
+                    currentCollapsedSection.SubRows.Add(new LogRowViewModel(log));
+                }
+                else
+                {
+                    currentCollapsedSection = null;
+                    Logs.Add(new LogRowViewModel(log));
+                }
+            }
         }
 
         public ReactiveCommand Refresh { get; set; }
