@@ -40,7 +40,7 @@
                                TextAlignment="Left"
                                Text="tap to expand"
                                FontSize="{StaticResource SmallTextSize}"
-                               Foreground="{StaticResource WeakTextBrush}" />
+                               Foreground="{ThemeResource COLOR_TEXT_WEAK}" />
                 </StackPanel>
 
 
@@ -62,7 +62,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Source="/Assets/Icons/Collapse.png" Height="25" Width="25" Margin="0, 0 5, 10" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Text="Collapse" FontSize="{StaticResource SmallTextSize}" VerticalAlignment="Center" Foreground="{StaticResource WeakTextBrush}"></TextBlock>
+                <TextBlock Grid.Column="1" Text="Collapse" FontSize="{StaticResource SmallTextSize}" VerticalAlignment="Center" Foreground="{ThemeResource COLOR_TEXT_WEAK}"></TextBlock>
             </Grid>
             
             <ItemsControl Grid.Row="1"

@@ -65,7 +65,8 @@
             <Button Content="Open Log File"
                     x:Name="LoadButton"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center" 
+                    Style="{StaticResource BrandButtonStyle}"/>
         </Grid>
     </Grid>
 </Page>

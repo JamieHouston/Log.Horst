@@ -60,7 +60,7 @@
 
         <StackPanel Grid.Column="1">
             <TextBlock Text="{x:Bind Message}" />
-            <TextBlock Foreground="{StaticResource WeakTextBrush}" FontSize="{StaticResource SmallTextSize}" Text="{x:Bind Subtitle}" />
+            <TextBlock Foreground="{ThemeResource COLOR_TEXT_WEAK}" FontSize="{StaticResource SmallTextSize}" Text="{x:Bind Subtitle}" />
 
         </StackPanel>
 

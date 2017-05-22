@@ -255,6 +255,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Horst.Styles\Horst.Styles.csproj">
+      <Project>{47442ca1-0b22-4cc1-ab36-7c1fd3bed761}</Project>
+      <Name>Horst.Styles</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Log.Horst.Model\Log.Horst.Model.csproj">
       <Project>{71aad039-9f8d-4603-890b-7721fda86460}</Project>
       <Name>Log.Horst.Model</Name>

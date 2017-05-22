@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="Horst.Styles.Colors">
+
+    <SolidColorBrush x:Key="COLOR_BACKGROUND" Color="#f4f6f9"/>
+    <SolidColorBrush x:Key="COLOR_BACKGROUND_ALT"
+                     Color="#fdfdfd"/>
+    <SolidColorBrush x:Key="COLOR_TEXT_DEFAULT"
+                     Color="#16325c"/>
+    <SolidColorBrush x:Key="COLOR_TEXT_WEAK"
+                     Color="#54698d" />
+
+    <SolidColorBrush x:Key="COLOR_TEXT_BUTTON_DEFAULT"
+                     Color="#0070d2" />
+
+    <SolidColorBrush x:Key="COLOR_TEXT_BUTTON_BRAND"
+                     Color="#FFFFFF" />
+
+    <SolidColorBrush x:Key="COLOR_BUTTON_BACKGROUND_DEFAULT"
+                     Color="#ffffff"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="COLOR_BUTTON_BACKGROUND_SUCCESS"
+                     Color="#4bca81"></SolidColorBrush>
+    <SolidColorBrush x:Key="COLOR_BUTTON_BACKGROUND_BRAND_HOVER"
+                     Color="#005fb2"></SolidColorBrush>
+    <SolidColorBrush x:Key="COLOR_BUTTON_BACKGROUND_BRAND_PRESSED"
+                     Color="#00396b"></SolidColorBrush>
+    <SolidColorBrush x:Key="COLOR_BUTTON_BACKGROUND_BRAND"
+                     Color="#0070d2"></SolidColorBrush>
+
+</ResourceDictionary>
+
